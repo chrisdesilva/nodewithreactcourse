@@ -1,10 +1,12 @@
 const express = require('express');
-const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
+require('./services/passport');
+const mongoose = require('mongoose');
+
 
 const app = express();
 
-passport.use(new GoogleStrategy());
+//pass app into arrow function from authRoutes
+require('./routes/authRoutes')(app);
 
 //allows Heroku to determine port or use 5000 when in development environment
 const PORT = process.env.PORT || 5000;
